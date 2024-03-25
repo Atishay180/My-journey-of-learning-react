@@ -1,0 +1,31 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  height: 100vh;
+}
+.btn{
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+.btn:hover{
+  text-decoration: underline;
+  transform: translate(7px);
+}
+
+
+h1{
+  position: absolute;
+  font-size: 80px;
+  color: white;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: underline;
+}
