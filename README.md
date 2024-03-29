@@ -1,2 +1,2 @@
 # React-Projects
-Its my repo of my React Projects
+Its a respository of my React Projects that I have created yet.
