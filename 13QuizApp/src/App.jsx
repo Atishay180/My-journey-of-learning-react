@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='w-screen flex flex-col items-center'>
       <div className='w-screen p-5 mb-4'>
-        <h1 className='text-4xl font-bold border-b-4 border-black pt-3 pb-6'>Simple Quiz</h1>
+        <h1 className='text-4xl text-white font-bold border-b-4 border-white pt-3 pb-6'>Simple Quiz</h1>
       </div>
       <Quiz1 showOutput={showOutput} setShowOutput={setShowOutput} />
       <ShowResult showOutput={showOutput} />
