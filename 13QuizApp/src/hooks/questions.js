@@ -5,7 +5,8 @@ export const data = [
         option2 : "Mumbai",
         option3 : "Delhi",
         option4 : "Chennai",
-        ans : 3
+        ans : 3,
+        userAns : null
     },
     {
         question : "What is the capital of MP",
@@ -13,7 +14,8 @@ export const data = [
         option2 : "Indore",
         option3 : "Ujjain",
         option4 : "Bhopal",
-        ans : 4
+        ans : 4,
+        userAns : null
     },
     {
         question : "What is the capital of Maharashtra",
@@ -21,7 +23,8 @@ export const data = [
         option2 : "Pune",
         option3 : "Nagpur",
         option4 : "None of These",
-        ans : 1
+        ans : 1,
+        userAns : null
     },
     {
         question : "What is the capital of West Bengal",
@@ -29,6 +32,7 @@ export const data = [
         option2 : "Kolkata",
         option3 : "Durgapur",
         option4 : "Siliguri",
-        ans : 2
+        ans : 2,
+        userAns : null
     },
 ]

@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
-import resultSlice from '../features/resultSlice'
+import questionSlice from '../features/questionSlice'
 
 export const store = configureStore({
-    reducer : resultSlice
+    reducer : questionSlice
 })
