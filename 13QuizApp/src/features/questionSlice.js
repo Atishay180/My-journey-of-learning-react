@@ -38,7 +38,8 @@ export const initialState = {
             ans: 2,
             userAns: null
         },
-    ]
+    ],
+    isSubmitted : false
 }
 
 const questionSlice = createSlice({
@@ -48,9 +49,12 @@ const questionSlice = createSlice({
         answer: (state, action) => {
             const { index, ans } = action.payload
             state.data[index].userAns = ans
+        },
+        setIsSubmitted : (state, action) => {
+            state.isSubmitted = action.payload
         }
     }
 })
 
-export const { answer } = questionSlice.actions
+export const { answer, setIsSubmitted } = questionSlice.actions
 export default questionSlice.reducer
