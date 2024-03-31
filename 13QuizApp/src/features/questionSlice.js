@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const initialState = {
-    data: [
+    questions: [
         {
             question: "What is the capital of India",
             option1: "Kolkata",
@@ -39,7 +39,11 @@ export const initialState = {
             userAns: null
         },
     ],
-    isSubmitted : false
+    quizStatus: {
+        isUserStarted: false,
+        isSubmitted: false
+    }
+
 }
 
 const questionSlice = createSlice({
@@ -48,13 +52,16 @@ const questionSlice = createSlice({
     reducers: {
         answer: (state, action) => {
             const { index, ans } = action.payload
-            state.data[index].userAns = ans
+            state.questions[index].userAns = ans
         },
-        setIsSubmitted : (state, action) => {
-            state.isSubmitted = action.payload
+        setIsUserStarted: (state, action) => {
+            state.quizStatus.isUserStarted = action.payload
+        },
+        setIsSubmitted: (state, action) => {
+            state.quizStatus.isSubmitted = action.payload
         }
     }
 })
 
-export const { answer, setIsSubmitted } = questionSlice.actions
+export const { answer, setIsUserStarted, setIsSubmitted } = questionSlice.actions
 export default questionSlice.reducer

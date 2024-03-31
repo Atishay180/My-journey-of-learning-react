@@ -2,13 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function ShowResult() {
-    const result = useSelector(state => state.data)
-    const isSubmitted = useSelector(state => state.isSubmitted)
+    const result = useSelector(state => state.questions)
 
     return (
         <div className="overflow-x-auto w-screen border-white flex flex-col items-center">
-
-            {isSubmitted ? <table className="table-auto text-xl w-3/4 border-collapse border border-gray-400 text-white-500">
+            <table className="table-auto text-xl w-3/4 border-collapse border border-gray-400 text-white-500">
                 <thead>
                     <tr className=" bg-gradient-to-tr from-amber-600 to-amber-500">
                         <th className="border border-black px-4 py-3 w-8 text-center">Ques No.</th>
@@ -27,7 +25,7 @@ function ShowResult() {
                         </tr>
                     ))}
                 </tbody>
-            </table> : null}
+            </table>
         </div>
     );
 }

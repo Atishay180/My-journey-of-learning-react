@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { answer, setIsSubmitted } from '../features/questionSlice';
 
 function Quiz1() {
-    const questions = useSelector(state => state.data);
+    const questions = useSelector(state => state.questions);
     const [index, setIndex] = useState(0);
     const question = questions[index];
 
