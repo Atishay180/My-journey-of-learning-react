@@ -6,6 +6,7 @@ function Quiz1() {
     const questions = useSelector(state => state.questions);
     const [index, setIndex] = useState(0);
     const question = questions[index];
+    const [selectedAnswer, setSelectedAnswer] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -36,10 +37,16 @@ function Quiz1() {
         <div className="container bg-gradient-to-br from-amber-600 to-amber-500 p-4 rounded-md shadow-md max-w-screen-xl mx-auto">
             <h1 className="text-2xl font-bold mb-4">{index + 1}. {question.question}</h1>
             <ol className="mb-4">
-                <li className={`p-2 font-medium border-2 border-white bg-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300`} onClick={() => { checkAns(1) }}>{question.option1}</li>
-                <li className={`p-2 font-medium border-2 border-white bg-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300`} onClick={() => { checkAns(2) }}>{question.option2}</li>
-                <li className={`p-2 font-medium border-2 border-white bg-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300`} onClick={() => { checkAns(3) }}>{question.option3}</li>
-                <li className={`p-2 font-medium border-2 border-white bg-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300`} onClick={() => { checkAns(4) }}>{question.option4}</li>
+                {question.options.map((option, optionIndex) => (
+                    <li
+                        key={optionIndex}
+                        className={`bg-white p-2 font-medium border-2 border-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300`}
+                        onClick={() => checkAns(optionIndex + 1)}
+                    // style={{ backgroundColor: selectedAnswer[index] === optionIndex + 1 ? 'green' : 'white' }} // Apply green background to selected option
+                    >
+                        {option}
+                    </li> 
+                ))}
             </ol>
 
             <div className="flex justify-between px-3">
