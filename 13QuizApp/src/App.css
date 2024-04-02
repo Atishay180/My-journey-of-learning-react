@@ -13,6 +13,7 @@
     width: 100%;
     height: 100vh;
     z-index: -1;
+    /* box-shadow: 2px 2px solid rgba(255, 255, 255, 0.527); */
 }
 .animateText{
     animation: move 1s linear infinite alternate;

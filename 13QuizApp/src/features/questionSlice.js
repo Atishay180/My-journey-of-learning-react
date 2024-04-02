@@ -27,12 +27,16 @@ export const initialState = {
             userAns: null
         },
     ],
+    selectedAns: Array(0).fill(null),
     quizStatus: {
         isUserStarted: false,
         isSubmitted: false
     }
 
 }
+
+initialState.selectedAns = Array(initialState.questions.length).fill(null);  //length of array
+
 
 const questionSlice = createSlice({
     name: "questions",
@@ -41,15 +45,17 @@ const questionSlice = createSlice({
         answer: (state, action) => {
             const { index, ans } = action.payload
             state.questions[index].userAns = ans
+            state.selectedAns[index] = ans;
         },
         setIsUserStarted: (state, action) => {
             state.quizStatus.isUserStarted = action.payload
         },
         setIsSubmitted: (state, action) => {
             state.quizStatus.isSubmitted = action.payload
-        }
+        },
+        resetState: () => initialState
     }
 })
 
-export const { answer, setIsUserStarted, setIsSubmitted } = questionSlice.actions
+export const { answer, setIsUserStarted, setIsSubmitted, resetState } = questionSlice.actions
 export default questionSlice.reducer
