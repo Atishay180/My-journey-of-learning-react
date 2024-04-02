@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsSubmitted, resetState } from '../features/questionSlice';
+import { setIsSubmitted, resetState, setIsUserReviewed } from '../features/questionSlice';
 
 function ShowResult() {
     const result = useSelector(state => state.questions)
@@ -9,6 +9,7 @@ function ShowResult() {
     const dispatch = useDispatch()
 
     const handleReview = () => {
+        dispatch(setIsUserReviewed(true))
         dispatch(setIsSubmitted(false))
     }
     

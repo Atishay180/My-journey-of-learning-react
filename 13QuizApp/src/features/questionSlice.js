@@ -26,9 +26,16 @@ export const initialState = {
             ans: 2,
             userAns: null
         },
+        {
+            question: "What is the capital of Uttar Pradesh",
+            options : ["Mathura", "Agra", "Lucknow", "kanpur"],
+            ans: 3,
+            userAns: null
+        }
     ],
     selectedAns: Array(0).fill(null),
     quizStatus: {
+        isUserReviewed : false,
         isUserStarted: false,
         isSubmitted: false
     }
@@ -53,9 +60,12 @@ const questionSlice = createSlice({
         setIsSubmitted: (state, action) => {
             state.quizStatus.isSubmitted = action.payload
         },
+        setIsUserReviewed: (state, action) => {
+            state.quizStatus.isUserReviewed = action.payload
+        },
         resetState: () => initialState
     }
 })
 
-export const { answer, setIsUserStarted, setIsSubmitted, resetState } = questionSlice.actions
+export const { answer, setIsUserStarted, setIsSubmitted, setIsUserReviewed, resetState } = questionSlice.actions
 export default questionSlice.reducer

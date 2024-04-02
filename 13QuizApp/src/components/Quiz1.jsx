@@ -7,11 +7,14 @@ function Quiz1() {
     const [index, setIndex] = useState(0);
     const question = questions[index];
     const selectedAnswer = useSelector(state => state.selectedAns)
+    const isUserReviewed = useSelector(state => state.quizStatus.isUserReviewed)
 
     const dispatch = useDispatch()
 
     const checkAns = (ans) => {
-        dispatch(answer({ index, ans }))
+        if (!isUserReviewed) {
+            dispatch(answer({ index, ans }))
+        }
     }
 
     const handleNext = () => {
@@ -34,15 +37,15 @@ function Quiz1() {
 
 
     return (
-        <div className="container bg-opacity-75 bg-amber-500 p-4 m-4 rounded-md shadow-md mx-auto" style={{ width: "80%"}} >
+        <div className="container bg-opacity-75 bg-amber-500 p-4 m-4 rounded-md shadow-md mx-auto" style={{ width: "80%" }} >
             <h1 className="text-2xl font-bold mb-4">{index + 1}. {question.question}</h1>
             <ol className="mb-4 flex flex-col">
                 {question.options.map((option, optionIndex) => (
                     <li
                         key={optionIndex}
-                        className={`bg-white p-2 border-2 text-lg text-gray-800 font-semibold border-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300 ${selectedAnswer[index] === optionIndex + 1 ? "bg-gray-500" : "bg-white"}`}
+                        className={`bg-white p-2 border-2 text-lg text-gray-800 font-semibold border-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform hover:scale-95 hover:bg-gray-300 `}
                         onClick={() => checkAns(optionIndex + 1)}
-                        style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}
+                        style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)", backgroundColor: selectedAnswer[index] === optionIndex + 1 ? "green" : "white" }}
                     >
                         {option}
                     </li>
