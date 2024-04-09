@@ -35,6 +35,7 @@ export const initialState = {
     ],
     selectedAns: Array(0).fill(null),
     quizStatus: {
+        isLoader : false,
         isUserReviewed : false,
         isUserStarted: false,
         isSubmitted: false
@@ -57,6 +58,9 @@ const questionSlice = createSlice({
         setIsUserStarted: (state, action) => {
             state.quizStatus.isUserStarted = action.payload
         },
+        setIsLoader: (state, action) => {
+            state.quizStatus.isLoader = action.payload
+        },
         setIsSubmitted: (state, action) => {
             state.quizStatus.isSubmitted = action.payload
         },
@@ -67,5 +71,5 @@ const questionSlice = createSlice({
     }
 })
 
-export const { answer, setIsUserStarted, setIsSubmitted, setIsUserReviewed, resetState } = questionSlice.actions
+export const { answer, setIsLoader, setIsUserStarted, setIsSubmitted, setIsUserReviewed, resetState } = questionSlice.actions
 export default questionSlice.reducer

@@ -12,7 +12,7 @@ function ShowResult() {
         dispatch(setIsUserReviewed(true))
         dispatch(setIsSubmitted(false))
     }
-    
+
     const handleHomePage = () => {
         setShowMessage(true)
         setTimeout(() => {
@@ -49,14 +49,14 @@ function ShowResult() {
                     className='bg-white duration-100 hover:bg-gray-200 hover:scale-95 text-zinc-800 text-xl font-bold py-2 px-5 m-5 rounded focus:outline-none focus:shadow-outline'
                     style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}
                     onClick={handleReview}
-                    >
+                >
                     Review Answers
                 </button>
                 <button
                     className='bg-white duration-100 hover:bg-gray-200 hover:scale-95 text-zinc-800 text-xl font-bold py-2 px-5 m-5 rounded focus:outline-none focus:shadow-outline'
                     style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}
                     onClick={handleHomePage}
-                    >
+                >
                     Home Page
                 </button>
             </div>}
