@@ -1,6 +1,6 @@
 import frame from '../../images/frame.png'
 
-const achievements = {
+const achievementData = {
     title : "Achievements",
     content : [
         {
@@ -26,4 +26,4 @@ const achievements = {
     ]
 }
 
-export {achievements}
+export {achievementData}
