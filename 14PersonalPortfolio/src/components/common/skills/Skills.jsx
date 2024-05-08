@@ -1,45 +1,40 @@
 import React, { useState } from 'react'
-import { Progress } from 'antd';
+// import { Progress, } from 'antd';
 import skillData from '../../data/skillData'
 
 function Skills() {
 
     return (
 
-        <div className={`text-secondary font-primary`}>
-            <header className='text-primary m-3 sm:m-5 lg:m-10 font-bold flex justify-center text-4xl sm:text-5xl'>{skillData.title}</header>
+        <div className={`text-secondary font-primary bg-zinc-900 mx-5 py-5 rounded-lg border`}>
+            <header className='text-primary p-4 font-bold flex justify-center text-4xl sm:text-5xl'>{skillData.title}</header>
 
-            <div className='flex'>
+            <div className='flex px-5 py-5'>
                 {/* left */}
-                <div className='border'>
-                    <div>{skillData.subTitle}</div>
-                    <div className='px-5 border flex flex-col justify-evenly'>
+                <div className='w-1/2 px-8 py-4 flex flex-col justify-evenly'>
+                    <div className='text-3xl'>{skillData.subTitle}</div>
+                    <div className='flex flex-col'>
                         {skillData.Descriptions.map((data, index) => (
-                            <li key={index} className=''>{data}</li>
+                            <li key={index} className='py-3 text-xl'>{data}</li>
                         ))}
                     </div>
                 </div>
 
                 {/* right */}
-                <div className='flex w-1/2'>
-                    {/* languages */}
-                    <div className='w-1/2 flex flex-col'>
-                        <div className='text-2xl'>{skillData.languages.title}</div>
+                <div className='flex flex-wrap w-1/2 border'>
+                    <div className='border flex flex-wrap'>
                         {skillData.languages.content.map((data, index) => (
-                            <div className='w-full my-2 py-2' key={index}>
-                                <div className='absolute z-10 p-2'>{data.title}</div>
-                                <Progress strokeWidth={40} percent={data.percent} trailColor='gray' strokeColor={'rgb(219, 39, 119)'} />
+                            <div key={index}>
+                                <button className='flex font-bold w-28 my-2 mx-5 px-2 py-3 justify-center rounded-lg bg-black duration-200 hover:scale-110 hover:bg-primary'> {data.title}</button>
                             </div>
                         ))}
                     </div>
 
-                    {/* frameworks */}
-                    <div className='w-1/2 flex flex-col'>
-                        <div className='text-2xl'>{skillData.frameworks.title}</div>
+
+                    <div className='border flex flex-wrap'>
                         {skillData.frameworks.content.map((data, index) => (
-                            <div className='w-full my-2 py-2' key={index}>
-                                <div className='absolute z-10 p-2'>{data.title}</div>
-                                <Progress strokeWidth={40} percent={data.percent} trailColor='gray' strokeColor={'rgb(219, 39, 119)'} />
+                            <div key={index}>
+                                <button className='flex font-bold w-28 my-2 mx-5 px-2 py-3 justify-center rounded-lg bg-black duration-200 hover:scale-110 hover:bg-primary'> {data.title}</button>
                             </div>
                         ))}
                     </div>

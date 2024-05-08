@@ -18,11 +18,11 @@ const project = {
             technologies: "HTML, CSS, JavaScript, React js",
             images: frame,
         },
-        {
-            projectName: "Todo App",
-            technologies: "HTML, CSS, JavaScript, React js",
-            images: frame,
-        },
+        // {
+        //     projectName: "Todo App",
+        //     technologies: "HTML, CSS, JavaScript, React js",
+        //     images: frame,
+        // },
     ]
 }
 

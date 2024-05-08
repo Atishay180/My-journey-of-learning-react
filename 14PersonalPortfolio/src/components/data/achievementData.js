@@ -18,11 +18,11 @@ const achievementData = {
             name : "1 Month Web Development Internship @Oasis-Infobyte",
             description : "issued by Oasis Infobyte"
         },
-        {
-            image : frame,
-            name : "Web Development & AWS training as a Mentor",
-            description : "issued by Wings Club"
-        },
+        // {
+        //     image : frame,
+        //     name : "Web Development & AWS training as a Mentor",
+        //     description : "issued by Wings Club"
+        // },
     ]
 }
 

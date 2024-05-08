@@ -3,7 +3,7 @@ import {project} from '../../data/project'
 
 function Projects() {
   return (
-    <div className='text-secondary font-primary'>
+    <div className='text-secondary font-primary py-20'>
       
       <header className='text-primary m-3 sm:m-5 lg:m-10 font-bold flex justify-center text-4xl sm:text-5x'>{project.title}</header>
 

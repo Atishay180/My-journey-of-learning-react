@@ -3,7 +3,7 @@ import {achievementData} from '../../data/achievementData'
 
 function Achievements() {
   return (
-    <div className='text-secondary font-primary'>
+    <div className='text-secondary font-primary py-20'>
       <header className='text-primary m-3 sm:m-5 lg:m-10 font-bold flex justify-center text-4xl sm:text-5xl'><h1>{achievementData.title}</h1></header>
 
       <div className='flex flex-wrap justify-evenly'>{achievementData.content.map((data, index) => (

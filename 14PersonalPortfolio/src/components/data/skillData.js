@@ -1,5 +1,4 @@
 import { Descriptions } from "antd"
-
 const skillData = {
     title: "Skills",
     subTitle : "Description : ",
@@ -15,23 +14,23 @@ const skillData = {
         content: [
             {
                 title: "HTML",
-                percent: 90,
+                // logo:,
             },
             {
                 title: "CSS",
-                percent: 90,
+                // logo:,
             },
             {
                 title: "JavaScript",
-                percent: 90,
+                // logo: ,
             },
             {
                 title: "C++",
-                percent: 90,
+                // logo: ,
             },
             {
                 title: "Python",
-                percent: 90,
+                // logo: ,
             },
         ],
     },
