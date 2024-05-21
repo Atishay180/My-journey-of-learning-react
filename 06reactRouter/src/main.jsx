@@ -9,6 +9,9 @@ import About from './components/About/About.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import User from './components/User/User.jsx'
 import Github, { gihubInfoLoader } from './components/Github/Github.jsx'
+import { Auth0Provider } from '@auth0/auth0-react';
+
+
 
 // const router = createBrowserRouter([
 //   {
@@ -48,7 +51,13 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain="dev-epe6nowd34ymj1d7.us.auth0.com"
+    clientId="NDxUEwPPmw9JBWAMz75uZGnwo593hMCF"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
     <RouterProvider router = {router} />
-  </React.StrictMode>,
+  </Auth0Provider>,
 )
