@@ -13,7 +13,6 @@ function Github() {
 
     return (
         <div className="bg-gray-700 text-white text-2xl p-4 m-4 text-center">
-            Github Followers : {data.followers}
             <img src={data.avatar_url} alt="Git Picture" width={300} />
         </div>
     )
@@ -22,6 +21,6 @@ function Github() {
 export default Github
 
 export const gihubInfoLoader = async () => {
-    const response = await fetch('https://api.github.com/users/hiteshchoudhary')
+    const response = await fetch('https://api.github.com/users/Atishay180')
     return response.json()
 }

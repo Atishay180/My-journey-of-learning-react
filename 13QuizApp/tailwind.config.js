@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary : {
+          dark: "#4f46e5",
+          light: "#d1c0fb"
+        }
+      },
+
+      fonts: {
+        primaryFont: "Playwrite DE Grund",
+      }
+    },
   },
   plugins: [],
 }

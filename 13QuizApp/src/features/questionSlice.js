@@ -4,42 +4,49 @@ export const initialState = {
     questions: [
         {
             question: "What is the capital of India",
-            options : ["Kolkata", "Mumbai", "Delhi", "Chennai",],
+            options: ["Kolkata", "Mumbai", "Delhi", "Chennai",],
             ans: 3,
             userAns: null
         },
         {
             question: "What is the capital of MP",
-            options : ["Jabalpur", "Indore", "Ujjain", "Bhopal",],
+            options: ["Jabalpur", "Indore", "Ujjain", "Bhopal",],
             ans: 4,
             userAns: null
         },
         {
             question: "What is the capital of Maharashtra",
-            options : ["Mumbai", "Pune", "Nagpur", "None of These",],
+            options: ["Mumbai", "Pune", "Nagpur", "None of These",],
             ans: 1,
             userAns: null
         },
         {
             question: "What is the capital of West Bengal",
-            options : ["Asansol", "Kolkata", "Durgapur", "Siliguri",],
+            options: ["Asansol", "Kolkata", "Durgapur", "Siliguri",],
             ans: 2,
             userAns: null
         },
         {
             question: "What is the capital of Uttar Pradesh",
-            options : ["Mathura", "Agra", "Lucknow", "kanpur"],
+            options: ["Mathura", "Agra", "Lucknow", "kanpur"],
             ans: 3,
             userAns: null
         }
     ],
     selectedAns: Array(0).fill(null),
+
+    isLoader: false,
+
     quizStatus: {
-        isLoader : false,
-        isUserReviewed : false,
-        isUserStarted: false,
-        isSubmitted: false
+        isUserReviewed: false,
+        isUserStarted: true,
+        isSubmitted: false,
+    },
+    
+    authStatus: {
+        isUserLoggedIn: false,
     }
+
 
 }
 
@@ -59,7 +66,7 @@ const questionSlice = createSlice({
             state.quizStatus.isUserStarted = action.payload
         },
         setIsLoader: (state, action) => {
-            state.quizStatus.isLoader = action.payload
+            state.isLoader = action.payload
         },
         setIsSubmitted: (state, action) => {
             state.quizStatus.isSubmitted = action.payload
@@ -67,9 +74,12 @@ const questionSlice = createSlice({
         setIsUserReviewed: (state, action) => {
             state.quizStatus.isUserReviewed = action.payload
         },
-        resetState: () => initialState
+        resetState: () => initialState,
+        setIsUserLoggedIn: (state, action) => {
+            state.authStatus.isUserLoggedIn = action.payload
+        }
     }
 })
 
-export const { answer, setIsLoader, setIsUserStarted, setIsSubmitted, setIsUserReviewed, resetState } = questionSlice.actions
+export const { answer, setIsLoader, setIsUserStarted, setIsSubmitted, setIsUserReviewed, resetState, setIsUserLoggedIn } = questionSlice.actions
 export default questionSlice.reducer

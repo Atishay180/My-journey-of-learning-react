@@ -1,23 +1,25 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { answer, setIsSubmitted, setIsLoader } from '../features/questionSlice';
-import Loader from './loader/Loader';
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { answer, setIsSubmitted } from '../features/questionSlice';
 
 function Quiz1() {
-    const isLoader = useSelector(state => state.quizStatus.isLoader)
+    const isUserLoggedIn = useSelector(state => state.authStatus.isUserLoggedIn);
+
     const questions = useSelector(state => state.questions);
     const [index, setIndex] = useState(0);
     const question = questions[index];
-    const selectedAnswer = useSelector(state => state.selectedAns)
-    const isUserReviewed = useSelector(state => state.quizStatus.isUserReviewed)
+    const selectedAnswer = useSelector(state => state.selectedAns);
+    const isUserReviewed = useSelector(state => state.quizStatus.isUserReviewed);
+    const isSubmitted = useSelector(state => state.quizStatus.isSubmitted);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const checkAns = (ans) => {
         if (!isUserReviewed) {
-            dispatch(answer({ index, ans }))
+            dispatch(answer({ index, ans }));
         }
-    }
+    };
 
     const handleNext = () => {
         if (index < questions.length - 1) {
@@ -32,71 +34,64 @@ function Quiz1() {
     };
 
     const handleSubmit = () => {
-        if (!isUserReviewed && window.confirm("Are you sure want to submit ?")) {
-            dispatch(setIsLoader(true))
-            setTimeout(() => {
-                dispatch(setIsSubmitted(true))
-                dispatch(setIsLoader(false))
-            }, 1000)
+        if (!isUserReviewed && window.confirm("Are you sure you want to submit?")) {
+            dispatch(setIsSubmitted(true));
+        } else if (isUserReviewed) {
+            dispatch(setIsSubmitted(true));
         }
-        else if (isUserReviewed) {
-            dispatch(setIsLoader(true))
-            setTimeout(() => {
-                dispatch(setIsSubmitted(true))
-                dispatch(setIsLoader(false))
-            }, 1000)
-        }
-        
+    };
+
+    if (!isUserLoggedIn) {
+        return <Navigate to="/" />;
     }
 
-
     return (
-        <div className='w-screen h-full'>
-            <div className="container bg-opacity-75 bg-amber-500 p-4 m-4 rounded-md shadow-md mx-auto" style={{ width: "80%" }} >
-                <h1 className="text-2xl font-bold mb-4">{index + 1}. {question.question}</h1>
-                <ol className="mb-4 flex flex-col">
+        <div className='flex items-center justify-center w-full h-screen bg-gray-100'>
+            <div className="container bg-white p-6 md:p-8 m-4 rounded-lg shadow-lg max-w-3xl mx-auto">
+                <header>
+                    <h1 className='text-3xl md:text-4xl border-b-2 border-black font-bold pt-3 pb-3 mb-6 text-center'>Quiz App</h1>
+                </header>
+                <h1 className="text-xl md:text-2xl font-bold mb-4">{index + 1}. {question.question}</h1>
+                <ol className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     {question.options.map((option, optionIndex) => (
-                        <li
-                            key={optionIndex}
-                            className={`bg-white p-2 border-2 text-lg text-gray-800 font-semibold border-white rounded-md cursor-pointer m-3 transition-transform duration-300 ease-in-out transform ${!isUserReviewed && 'hover:scale-95 hover:bg-gray-300'} `}
+                        <li key={optionIndex}
+                            // className={`bg-white font-semibold p-2 border border-black text-lg text-black rounded-md cursor-pointer transition-transform duration-300 ease-in-out transform ${selectedAnswer[index] === optionIndex + 1 ? " bg-sky-200 border-2 border-sky-500" : ""} ${!isUserReviewed && 'hover:scale-95 hover:bg-gray-300'}`}
+
+                            className={`p-4 border-2 rounded-lg shadow-sm cursor-pointer transition-transform duration-300 ease-in-out transform ${selectedAnswer[index] === optionIndex + 1 ? "bg-blue-100 border-blue-500" : "bg-white border-gray-300"} ${!isUserReviewed && 'hover:scale-105 hover:bg-gray-200'}`}
                             onClick={() => checkAns(optionIndex + 1)}
-                            style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)", backgroundColor: selectedAnswer[index] === optionIndex + 1 ? "rgb(14, 182, 228)" : "white" }}
                         >
                             {option}
                         </li>
                     ))}
                 </ol>
 
-                <div className="flex justify-between px-3">
+                <div className="flex justify-between">
                     <button
-                        className="bg-gradient-to-tr duration-100 from-pink-700 to-pink-600 hover:from-pink-600 hover:to-pink-700 hover:scale-105 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:from-white disabled:to-white disabled:text-gray-400"
+                        className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
                         disabled={index <= 0}
-                        onClick={handlePrevious}
-                        style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}>
+                        onClick={handlePrevious}>
                         Previous
                     </button>
 
                     <button
-                        className='bg-white w-1/4 duration-100 hover:bg-gray-200 hover:scale-105 text-zinc-800 text-xl font-bold py-2 px-5 rounded focus:outline-none focus:shadow-outline disabled:hidden'
+                        className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200 disabled:hidden'
                         disabled={index < questions.length - 1}
-                        onClick={handleSubmit}
-                        style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}>
+                        onClick={handleSubmit}>
                         Submit
                     </button>
 
+                    {isSubmitted ? <Navigate to='/' /> : ""}
 
                     <button
-                        className="bg-gradient-to-tl duration-100 from-pink-700 to-pink-600 hover:from-pink-600 hover:to-pink-700 hover:scale-105 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline disabled:from-white disabled:to-white disabled:text-gray-400"
+                        className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
                         disabled={index >= questions.length - 1}
-                        onClick={handleNext}
-                        style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}>
+                        onClick={handleNext}>
                         Next
                     </button>
                 </div>
             </div>
-            {isLoader && <Loader />}
         </div>
-    )
+    );
 }
 
-export default Quiz1
+export default Quiz1;
