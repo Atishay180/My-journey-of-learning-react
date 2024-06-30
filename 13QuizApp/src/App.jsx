@@ -9,6 +9,9 @@ import Loader from './components/Loader'
 import FrontPage from './components/FrontPage'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Contact from './pages/Contact'
+import Services from './pages/Services'
+import About from './pages/About'
 
 function App() {
 
@@ -17,6 +20,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<FrontPage />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/services' element={<Services />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/quiz' element={<Quiz1 />} />

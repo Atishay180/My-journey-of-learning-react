@@ -8,8 +8,10 @@ export default {
     extend: {
       colors: {
         primary : {
-          dark: "#4f46e5",
-          light: "#d1c0fb"
+          dark: 'rgb(70, 26, 66)',
+          light: 'rgb(239, 229, 255)',
+          darkHover: 'rgba(70, 26, 66, 0.916)',
+          lightHover: 'rgb(226, 211, 250)',
         }
       },
 
