@@ -10,7 +10,7 @@ const Navbar = () => {
                     <img className="w-24" src={logo} alt="Logo" />
                 </div>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button type="button" className="text-primary-dark bg-primary-light hover:bg-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center dark:focus:ring-primary-light">Get started</button>
+                    <button type="button" className="text-primary-dark bg-primary-light hover:bg-primary-lightHover focus:ring-4 focus:outline-none font-bold rounded-lg text-sm px-4 py-2 text-center dark:focus:ring-primary-light">Get started</button>
                     
                     <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                         <li>
                             <NavLink
-                                exact
+                                
                                 to="/"
                                 className={({ isActive }) =>
                                     isActive ? "block py-2 px-3 font-bold text-zinc-400 " : "block py-2 px-3 font-bold text-primary-light hover:text-zinc-300"

@@ -40,6 +40,10 @@ function Quiz1() {
         }
     };
 
+    const handleQuestionClick = (index) => {
+        setIndex(index)
+    }
+
     if (!isUserLoggedIn) {
         return <Navigate to="/" />;
     }
@@ -66,7 +70,7 @@ function Quiz1() {
                         </ol>
                         <div className="flex justify-between">
                             <button
-                                className="bg-primary-dark hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
+                                className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
                                 disabled={index <= 0}
                                 onClick={handlePrevious}>
                                 Previous
@@ -79,7 +83,7 @@ function Quiz1() {
                             </button>
                             {isSubmitted ? <Navigate to='/' /> : ""}
                             <button
-                                className="bg-primary-dark hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
+                                className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
                                 disabled={index >= questions.length - 1}
                                 onClick={handleNext}>
                                 Next
@@ -99,7 +103,7 @@ function Quiz1() {
                             </thead>
                             <tbody>
                                 {questions.map((q, qIndex) => (
-                                    <tr key={qIndex} className={`${index === qIndex ? 'bg-blue-100' : ''}`}>
+                                    <tr key={qIndex} onClick={() => handleQuestionClick(qIndex)} className={`${index === qIndex ? 'bg-blue-100' : ''}`}>
                                         <td className="py-2 px-4 border">{qIndex + 1}</td>
                                         <td className="py-2 px-4 border">
                                             {selectedAnswer[qIndex] ? 'Completed' : 'Incomplete'}

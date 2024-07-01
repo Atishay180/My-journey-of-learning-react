@@ -4,7 +4,7 @@ import bg2 from './../images/bg2.jpg';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoader } from '../features/questionSlice';
-import Loader from './Loader';
+import Loader from '../components/Loader';
 
 const Home = () => {
     const isLoader = useSelector(state => state.isLoader);

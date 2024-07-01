@@ -4,13 +4,12 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Quiz1 from './components/Quiz1'
 import ShowResult from './components/ShowResult'
-import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Contact from './pages/Contact'
 import Services from './pages/Services'
 import About from './pages/About'
-import Home from './components/Home'
+import Home from './pages/Home'
 
 function App() {
 
@@ -30,6 +29,7 @@ function App() {
       <Footer />
     </BrowserRouter>
     // <Loader />
+    // <Quiz1 />
   )
 }
 
