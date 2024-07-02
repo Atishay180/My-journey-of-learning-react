@@ -1,72 +1,88 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsSubmitted, resetState, setIsUserReviewed } from '../features/questionSlice';
+import { useNavigate } from 'react-router-dom';
+import { setIsSubmitted, resetState, setIsUserReviewed, setIsLoader } from '../features/questionSlice';
+import Loader from './Loader';
 
 function ShowResult() {
-    const result = useSelector(state => state.questions)
-    const [ShowMessage, setShowMessage] = useState(false)
+    const result = useSelector(state => state.questions);
+    const [showMessage, setShowMessage] = useState(false);
+    const isLoading = useSelector(state => state.isLoader)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const handleReview = () => {
-        dispatch(setIsUserReviewed(true))
-        dispatch(setIsSubmitted(false))
-    }
+        dispatch(setIsLoader(true))
+        setTimeout(() => {
+            dispatch(setIsLoader(false))
+        }, 500);
+        dispatch(setIsUserReviewed(true));
+        dispatch(setIsSubmitted(false));
+        navigate(-1)
+    };
 
     const handleHomePage = () => {
-        setShowMessage(true)
+        dispatch(setIsLoader(true))
         setTimeout(() => {
-            <h1 className=' text-white text-5xl font-bold'>Thanks for visiting</h1>
-            dispatch(resetState())
+            dispatch(setIsLoader(false))
+        }, 500);
+        setShowMessage(true);
+        setTimeout(() => {
+            dispatch(resetState());
         }, 1500);
+    };
+
+    if (isLoading) {
+        return <Loader />
     }
 
     return (
-        <div className="overflow-x-auto w-screen flex flex-col items-center">
-            {!ShowMessage && <table className="table-auto m-5 w-3/4 border-separate border border-gray-400 text-white-500">
-                <thead>
-                    <tr className=" text-lg sm:text-xl lg:text-2xl xl:text-3xl text-amber-500 bg-green-500 bg-opacity-20">
-                        <th className="border border-white px-4 py-3 w-8 text-center">Ques No.</th>
-                        <th className="border border-white px-4 py-3 text-center">Choosed</th>
-                        <th className="border border-white px-4 py-3 text-center">Remarks</th>
-                        <th className="border border-white px-4 py-3 text-center">✅ / ❌</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {result.map((data, id) => (
-                        <tr key={id} className={'text-white lg:text-lg xl:text-xl bg-gray-500 bg-opacity-30'}>
-                            <td className="border border-white px-4 py-3 w-8 text-center">{id + 1}.</td>
-                            <td className="border border-white px-4 py-3 text-center">Option-{data.userAns}</td>
-                            <td className="border border-white px-4 py-3 text-center">{data.userAns === null ? "Not Attempted" : (data.ans === data.userAns ? "Correct" : "Incorrect")}</td>
-                            <td className="border border-white px-4 py-3 text-center">{data.userAns === null ? "-" : (data.ans === data.userAns ? "✅" : "❌")}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>}
-
-            {!ShowMessage && <div>
-                <button
-                    className='bg-white duration-100 hover:bg-gray-200 hover:scale-95 text-zinc-800 text-xl font-bold py-2 px-5 m-5 rounded focus:outline-none focus:shadow-outline'
-                    style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}
-                    onClick={handleReview}
-                >
-                    Review Answers
-                </button>
-                <button
-                    className='bg-white duration-100 hover:bg-gray-200 hover:scale-95 text-zinc-800 text-xl font-bold py-2 px-5 m-5 rounded focus:outline-none focus:shadow-outline'
-                    style={{ boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.272)" }}
-                    onClick={handleHomePage}
-                >
-                    Home Page
-                </button>
-            </div>}
-
-            {ShowMessage && (
-                <div className='overflow-hidden text-center'>
-                    <h1 className='text-2xl sm:text-3xl lg:text-4xl xl:text-5xl p-4 text-white'>Thanks For Visiting</h1>
+        <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+            {!showMessage && (
+                <div className="w-full max-w-6xl p-6 bg-white shadow-lg rounded-lg">
+                    <table className="w-full table-auto border-collapse">
+                        <thead>
+                            <tr className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-primary-light bg-primary-dark">
+                                <th className="border border-gray-400 px-4 py-3 text-center">Ques No.</th>
+                                <th className="border border-gray-400 px-4 py-3 text-center">Choosed</th>
+                                <th className="border border-gray-400 px-4 py-3 text-center">Remarks</th>
+                                <th className="border border-gray-400 px-4 py-3 text-center">✅ / ❌</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {result.map((data, id) => (
+                                <tr key={id} className="text-primary-dark lg:text-lg xl:text-xl bg-primary-light">
+                                    <td className="border border-gray-400 px-4 py-3 text-center">{id + 1}.</td>
+                                    <td className="border border-gray-400 px-4 py-3 text-center">Option-{data.userAns}</td>
+                                    <td className="border border-gray-400 px-4 py-3 text-center">{data.userAns === null ? "Not Attempted" : (data.ans === data.userAns ? "Correct" : "Incorrect")}</td>
+                                    <td className="border border-gray-400 px-4 py-3 text-center">{data.userAns === null ? "-" : (data.ans === data.userAns ? "✅" : "❌")}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <div className="mt-6 flex justify-center space-x-4">
+                        <button
+                            className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded shadow transition duration-200"
+                            onClick={handleReview}
+                        >
+                            Review Answers
+                        </button>
+                        <button
+                            className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded shadow transition duration-200"
+                            onClick={handleHomePage}
+                        >
+                            Home Page
+                        </button>
+                    </div>
                 </div>
             )}
 
+            {showMessage && (
+                <div className="text-center">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl p-4 text-primary-dark">Thanks For Visiting</h1>
+                </div>
+            )}
         </div>
     );
 }

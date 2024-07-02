@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { answer, setIsSubmitted } from '../features/questionSlice';
+import { answer, setIsSubmitted, setIsLoader } from '../features/questionSlice';
+import Loader from './Loader';
 
 function Quiz1() {
     const isUserLoggedIn = useSelector(state => state.authStatus.isUserLoggedIn);
@@ -11,6 +12,8 @@ function Quiz1() {
     const selectedAnswer = useSelector(state => state.selectedAns);
     const isUserReviewed = useSelector(state => state.quizStatus.isUserReviewed);
     const isSubmitted = useSelector(state => state.quizStatus.isSubmitted);
+    const isLoading = useSelector(state => state.isLoader)
+
 
     const dispatch = useDispatch();
 
@@ -34,8 +37,16 @@ function Quiz1() {
 
     const handleSubmit = () => {
         if (!isUserReviewed && window.confirm("Are you sure you want to submit?")) {
+            dispatch(setIsLoader(true))
+            setTimeout(() => {
+                dispatch(setIsLoader(false))
+            }, 500);
             dispatch(setIsSubmitted(true));
         } else if (isUserReviewed) {
+            dispatch(setIsLoader(true))
+            setTimeout(() => {
+                dispatch(setIsLoader(false))
+            }, 500);
             dispatch(setIsSubmitted(true));
         }
     };
@@ -46,6 +57,10 @@ function Quiz1() {
 
     if (!isUserLoggedIn) {
         return <Navigate to="/" />;
+    }
+
+    if (isLoading) {
+        return <Loader />
     }
 
     return (
@@ -81,7 +96,7 @@ function Quiz1() {
                                 onClick={handleSubmit}>
                                 Submit
                             </button>
-                            {isSubmitted ? <Navigate to='/' /> : ""}
+                            {isSubmitted ? <Navigate to='/result' /> : ""}
                             <button
                                 className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
                                 disabled={index >= questions.length - 1}
