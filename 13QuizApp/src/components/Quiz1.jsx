@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { answer, setIsSubmitted, setIsLoader } from '../features/questionSlice';
 import Loader from './Loader';
+import ErrorPage from './ErrorPage';
 
 function Quiz1() {
     const isUserLoggedIn = useSelector(state => state.authStatus.isUserLoggedIn);
@@ -56,7 +57,7 @@ function Quiz1() {
     }
 
     if (!isUserLoggedIn) {
-        return <Navigate to="/" />;
+        return <ErrorPage />;
     }
 
     if (isLoading) {

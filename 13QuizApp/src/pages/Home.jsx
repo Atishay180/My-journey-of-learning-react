@@ -38,7 +38,7 @@ const Home = () => {
                 <div className='md:w-1/2 h-full p-10 md:p-28 flex flex-col justify-center'>
                     <div className='flex flex-col h-full bg-white p-8 rounded-lg shadow-lg'>
                         {/* Logo */}
-                        <div className='flex justify-center mb-6'>
+                        <div className='flex justify-center md:mb-6'>
                             <img src={logo} alt="Logo" className='w-32 h-32 object-contain' />
                         </div>
                         <h1 className='text-5xl font-extrabold mb-6 text-gray-800'>
@@ -59,7 +59,7 @@ const Home = () => {
                 </div>
 
                 {/* Image Section */}
-                <div className='md:w-1/2 h-full flex items-center justify-center pt-16'>
+                <div className='md:w-1/2 hidden md:flex items-center justify-center pt-16'>
                     <img style={bgImage} src={bg2} alt="Background" />
                 </div>
             </div>

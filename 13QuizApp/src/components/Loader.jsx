@@ -7,7 +7,7 @@ const Loader = () => {
             justifyContent: 'center',
             alignItems: 'center',
             minHeight: '100vh',
-            backgroundColor: 'rgb(71, 71, 71)', // Light background color
+            backgroundColor: 'white', // Light background color
         },
         spinner: {
             border: '16px solid #f3f3f3', // Light grey

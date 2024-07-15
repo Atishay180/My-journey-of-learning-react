@@ -97,7 +97,7 @@ const SignUp = () => {
                         Already have an account? <Link to="/login" className="font-medium text-primary-dark hover:text-primary-darkHover">Login</Link>
                     </div>
 
-                    {isUserLoggedIn ? <Navigate to="/quiz" /> : null}
+                    {isUserLoggedIn ? <Navigate to="/start" /> : null}
                 </form>
             </div>
         </div>

@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { setIsSubmitted, resetState, setIsUserReviewed, setIsLoader } from '../features/questionSlice';
 import Loader from './Loader';
+import ErrorPage from './ErrorPage';
 
 function ShowResult() {
     const result = useSelector(state => state.questions);
     const [showMessage, setShowMessage] = useState(false);
     const isLoading = useSelector(state => state.isLoader)
+    const isSubmitted = useSelector(state => state.quizStatus.isSubmitted)
 
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const handleReview = () => {
-        dispatch(setIsLoader(true))
+    const handleReview = useCallback(() => {
+        dispatch(setIsLoader(true));
         setTimeout(() => {
-            dispatch(setIsLoader(false))
+            dispatch(setIsLoader(false));
         }, 500);
         dispatch(setIsUserReviewed(true));
         dispatch(setIsSubmitted(false));
-        navigate(-1)
-    };
+        navigate(-1);
+    }, [dispatch, navigate]);
+    
 
-    const handleHomePage = () => {
-        dispatch(setIsLoader(true))
-        setTimeout(() => {
-            dispatch(setIsLoader(false))
-        }, 500);
+    const handleHomePage = useCallback(() => {
         setShowMessage(true);
         setTimeout(() => {
             dispatch(resetState());
+            setShowMessage(false);
+            navigate('/');
         }, 1500);
-    };
+    }, [dispatch, navigate]);
+    
+
+    if(!isSubmitted){
+        return <ErrorPage />
+    }
 
     if (isLoading) {
         return <Loader />

@@ -10,6 +10,8 @@ import Contact from './pages/Contact'
 import Services from './pages/Services'
 import About from './pages/About'
 import Home from './pages/Home'
+import ErrorPage from './components/ErrorPage'
+import Start from './components/Start'
 
 function App() {
 
@@ -23,11 +25,14 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/start' element={<Start />} />
         <Route path='/quiz' element={<Quiz1 />} />
         <Route path='/result' element={<ShowResult />} />
+        <Route path='/error' element={<ErrorPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
+
     // <Loader />
     // <Quiz1 />
     // <BackButton />
