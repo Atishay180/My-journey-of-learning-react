@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setIsUserLoggedIn, setIsLoader } from '../features/questionSlice'
 import Loading from './Loader'
 import BackButton from './BackButton'
+import bg3 from './../images/bg3.jpg';
+
 
 const SignUp = () => {
     const dispatch = useDispatch()
@@ -34,13 +36,15 @@ const SignUp = () => {
         }
     }
 
-    if(isLoading){
-        return <Loading /> 
-      }
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <BackButton to={-1}/>
+        <div className="flex items-center justify-center min-h-screen">
+            <img className='absolute -z-10 w-full h-full object-cover rotate-180' src={bg3} alt="" />
+
+            <BackButton to={-1} />
             <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-lg rounded-lg">
                 <h2 className="text-2xl font-bold text-center text-gray-900">SignUp</h2>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

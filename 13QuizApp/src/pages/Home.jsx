@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './../images/logoDark.png';
 import bg2 from './../images/bg2.jpg';
+import bg3 from './../images/bg3.jpg';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoader } from '../features/questionSlice';
@@ -32,7 +33,9 @@ const Home = () => {
     }
 
     return (
-        <div className='w-full h-screen flex items-center justify-center bg-gray-100'>
+        <div className='w-full h-screen flex items-center justify-center'> 
+        {/* background */}
+            <img className='absolute -z-10 w-full h-full object-cover rotate-180' src={bg3} alt="" />
             <div className='w-full h-full flex flex-col md:flex-row'>
                 {/* Text Section */}
                 <div className='md:w-1/2 h-full p-10 md:p-28 flex flex-col justify-center'>
