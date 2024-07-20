@@ -3,12 +3,31 @@ import React from 'react';
 const Contact = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-8">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <style>
+        {`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .fade-in {
+            animation: fadeIn 1s ease-in-out;
+          }
+        `}
+      </style>
+
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg fade-in">
         <h1 className="text-4xl font-bold mb-6 text-center text-primary-dark">Contact Us</h1>
         <p className="mb-10 text-gray-700 text-center">
           We'd love to hear from you! Please fill out the form below to get in touch.
         </p>
-        <form className="space-y-6">
+        <form className="space-y-6 fade-in">
           <div>
             <label htmlFor="name" className="block text-gray-700">Name</label>
             <input
