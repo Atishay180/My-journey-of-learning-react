@@ -5,9 +5,11 @@ import Loader from './Loader.jsx';
 import { setIsLoader, setQuizIndex } from '../features/questionSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import bg4 from './../images/bg4.jpg';
+import ErrorPage from './ErrorPage.jsx';
 
 const QuizSelection = () => {
   const isLoading = useSelector(state => state.isLoader);
+  const isUserLoggedIn = useSelector(state => state.authStatus.isUserLoggedIn)
 
   const dispatch = useDispatch();
 
@@ -22,6 +24,10 @@ const QuizSelection = () => {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  else if(!isUserLoggedIn){
+    return <ErrorPage errorCode="401" errorText="Oops! Something Went Wrong. Please Login to Continue"/>
   }
 
   return (

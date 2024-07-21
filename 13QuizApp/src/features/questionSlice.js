@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {quizQuestions} from "../hooks/questions.js"
+import { quizQuestions } from "../hooks/questions.js"
 
 export const initialState = {
     // questions,
@@ -14,11 +14,12 @@ export const initialState = {
 
     quizStatus: {
         isUserReviewed: false,
-        isUserStarted: true,
+        isUserStarted: false,
         isSubmitted: false,
     },
-    
+
     authStatus: {
+        user: null,
         isUserLoggedIn: false,
     }
 
@@ -36,6 +37,13 @@ const questionSlice = createSlice({
             const { index, ans } = action.payload
             state.questions[index].userAns = ans
             state.selectedAns[index] = ans;
+        },
+        setUser: (state, action) => {
+            state.authStatus.user = {
+                username: action.payload.username,
+                email: action.payload.email,
+                prfilePic: action.payload.prfilePic
+            }
         },
         setIsUserStarted: (state, action) => {
             state.quizStatus.isUserStarted = action.payload
@@ -60,14 +68,15 @@ const questionSlice = createSlice({
     }
 })
 
-export const { 
-    answer, 
-    setIsLoader, 
-    setIsUserStarted, 
-    setIsSubmitted, 
-    setIsUserReviewed, 
-    resetState, 
-    setIsUserLoggedIn, 
-    setQuizIndex 
+export const {
+    answer,
+    setUser,
+    setIsLoader,
+    setIsUserStarted,
+    setIsSubmitted,
+    setIsUserReviewed,
+    resetState,
+    setIsUserLoggedIn,
+    setQuizIndex
 } = questionSlice.actions
 export default questionSlice.reducer

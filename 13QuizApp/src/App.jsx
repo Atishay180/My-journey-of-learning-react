@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import ErrorPage from './components/ErrorPage'
 import Start from './components/Start'
 import QuizSelection from './components/QuizSelection'
+import Profile from './components/Profile'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/services' element={<Services />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/profile' element={<Profile />}/>
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/select' element={<QuizSelection />} />

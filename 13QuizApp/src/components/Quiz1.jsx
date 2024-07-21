@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { answer, setIsSubmitted, setIsLoader } from '../features/questionSlice';
 import Loader from './Loader';
 import ErrorPage from './ErrorPage';
+import bg3 from './../images/bg3.jpg';
+
 
 function Quiz1() {
     const isUserLoggedIn = useSelector(state => state.authStatus.isUserLoggedIn);
@@ -57,7 +59,7 @@ function Quiz1() {
     }
 
     if (!isUserLoggedIn) {
-        return <ErrorPage />;
+        return <ErrorPage errorCode="401" errorText="Oops! Something Went Wrong. Please Login to Continue"/>;
     }
 
     if (isLoading) {
@@ -65,8 +67,10 @@ function Quiz1() {
     }
 
     return (
-        <div className='flex justify-center w-full h-screen bg-gray-100'>
-            <div className="container bg-white p-6 md:p-8 mx-auto">
+        <div className='select-none flex justify-center w-full h-screen'>
+            <img className='  blur-sm absolute -z-10 w-full h-full object-cover rotate-180' src={bg3} alt="" />
+
+            <div className="container p-6 md:p-8 mx-auto">
                 <header>
                     <h1 className='text-3xl md:text-4xl border-b-2 border-black font-bold pt-3 pb-3 mb-6 text-center'>Quizify</h1>
                 </header>
@@ -86,7 +90,7 @@ function Quiz1() {
                         </ol>
                         <div className="flex justify-between">
                             <button
-                                className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
+                                className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-400 disabled:text-white"
                                 disabled={index <= 0}
                                 onClick={handlePrevious}>
                                 Previous
@@ -99,7 +103,7 @@ function Quiz1() {
                             </button>
                             {isSubmitted ? <Navigate to='/result' /> : ""}
                             <button
-                                className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-300 disabled:text-gray-400"
+                                className="bg-primary-dark hover:bg-primary-darkHover text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:bg-gray-400 disabled:text-white"
                                 disabled={index >= questions.length - 1}
                                 onClick={handleNext}>
                                 Next
@@ -110,7 +114,7 @@ function Quiz1() {
                     {/* Tracking Table Section */}
                     <div className='md:w-1/5 p-1'>
                         <h2 className="text-xl md:text-2xl font-bold mb-4">Question Status</h2>
-                        <table className="min-w-full min-h-full bg-white border">
+                        <table className="min-w-full min-h-full border">
                             <thead>
                                 <tr>
                                     <th className="py-2 border">Question</th>

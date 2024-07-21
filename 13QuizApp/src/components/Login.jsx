@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { auth, } from '../authentication/Auth'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../authentication/Auth'
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsUserLoggedIn, setIsLoader } from '../features/questionSlice'
+import { setIsUserLoggedIn, setIsLoader, setUser } from '../features/questionSlice'
 import Loading from './Loader'
 import BackButton from './BackButton'
 import bg3 from './../images/bg3.jpg';
@@ -25,7 +25,14 @@ const Login = () => {
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      const userCredentials = await signInWithEmailAndPassword(auth, email, password)
+      const user = userCredentials.user
+      dispatch(setUser({
+        username: user.displayName,
+        email: user.email,
+        prfilePic: user.photoURL
+      }
+    ))
       dispatch(setIsUserLoggedIn(true));
     } catch (error) {
       setError("Failed to log in. Please check your credentials and try again.");

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setIsSubmitted, resetState, setIsUserReviewed, setIsLoader } from '../features/questionSlice';
+import { setIsSubmitted, resetState, setIsUserReviewed, setIsLoader, setIsUserStarted } from '../features/questionSlice';
 import Loader from './Loader';
 import ErrorPage from './ErrorPage';
 import bg3 from './../images/bg3.jpg';
@@ -32,10 +32,11 @@ function ShowResult() {
             setShowMessage(false);
             navigate('/');
         }, 1500);
+        dispatch(setIsUserStarted(false))
     }, [dispatch, navigate]);
 
     if (!isSubmitted) {
-        return <ErrorPage />;
+        return <ErrorPage errorCode="404" errorText="Oops! Something Went Wrong. Please Complete the Quiz"/>;
     }
 
     if (isLoading) {
