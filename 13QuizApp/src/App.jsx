@@ -14,6 +14,7 @@ import ErrorPage from './components/ErrorPage'
 import Start from './components/Start'
 import QuizSelection from './components/QuizSelection'
 import Profile from './components/Profile'
+import Test from './pages/Test'
 
 function App() {
 
@@ -33,6 +34,8 @@ function App() {
         <Route path='/quiz' element={<Quiz1 />} />
         <Route path='/result' element={<ShowResult />} />
         <Route path='/error' element={<ErrorPage />} />
+        
+        <Route path='/test' element={<Test />} />
       </Routes>
       <Footer />
     </BrowserRouter>
